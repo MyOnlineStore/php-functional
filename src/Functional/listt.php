@@ -22,7 +22,7 @@ const fromIterable = 'Widmogrod\Functional\fromIterable';
  * @param  iterable $i
  * @return Listt
  */
-function fromIterable(iterable $i): Listt
+function fromIterable($i): Listt
 {
     if (is_array($i)) {
         $i = new \ArrayObject($i);

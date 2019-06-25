@@ -27,8 +27,8 @@ class UnzipTest extends \PHPUnit\Framework\TestCase
         Listt $a,
         array $expected
     ) {
-        [$a, $b] = unzip($a);
-        [$ea, $eb] = $expected;
+        list($a, $b) = unzip($a);
+        list($ea, $eb) = $expected;
 
 
         $this->assertTrue($a->equals($ea));
@@ -60,7 +60,7 @@ class UnzipTest extends \PHPUnit\Framework\TestCase
             Generator\string(),
             Generator\string()
         )->then(function ($n, $x, $y) {
-            [$xs, $ys] = unzip(repeat([$x, $y]));
+            list($xs, $ys) = unzip(repeat([$x, $y]));
 
             $this->assertEquals($n, length(filter(eql($x), take($n, $xs))));
             $this->assertEquals($n, length(filter(eql($y), take($n, $ys))));

@@ -11,7 +11,7 @@ class ListtNil implements Listt, \IteratorAggregate
 {
     use Common\PointedTrait;
 
-    public const of = 'Widmogrod\Primitive\ListtConst::of';
+    const of = 'Widmogrod\Primitive\ListtConst::of';
 
     public function __construct()
     {

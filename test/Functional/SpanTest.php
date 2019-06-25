@@ -23,8 +23,8 @@ class SpanTest extends \PHPUnit\Framework\TestCase
         Listt $xs,
         array $expected
     ) {
-        [$left, $right] = span($predicate, $xs);
-        [$eleft, $eright] = $expected;
+        list($left, $right) = span($predicate, $xs);
+        list($eleft, $eright) = $expected;
 
         $l = print_r($left->extract(), true);
         $r = print_r($right->extract(), true);

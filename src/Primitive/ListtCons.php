@@ -10,7 +10,7 @@ use Widmogrod\Functional as f;
 
 class ListtCons implements Listt, \IteratorAggregate
 {
-    public const of = 'Widmogrod\Primitive\ListtCons::of';
+    const of = 'Widmogrod\Primitive\ListtCons::of';
 
     /**
      * @var callable
@@ -39,7 +39,7 @@ class ListtCons implements Listt, \IteratorAggregate
     {
         $tail = $this;
         do {
-            [$head, $tail] = $tail->headTail();
+            list($head, $tail) = $tail->headTail();
             yield $head;
         } while ($tail instanceof self);
     }
@@ -50,7 +50,7 @@ class ListtCons implements Listt, \IteratorAggregate
     public function map(callable $transformation): FantasyLand\Functor
     {
         return new self(function () use ($transformation) {
-            [$head, $tail] = $this->headTail();
+            list ($head, $tail) = $this->headTail();
 
             return [$transformation($head), $tail->map($transformation)];
         });
@@ -148,7 +148,7 @@ class ListtCons implements Listt, \IteratorAggregate
 
         if ($value instanceof self) {
             return new self(function () use ($value) {
-                [$x, $xs] = $this->headTail();
+                list ($x, $xs) = $this->headTail();
 
                 return [$x, $xs->concat($value)];
             });
@@ -172,7 +172,7 @@ class ListtCons implements Listt, \IteratorAggregate
      */
     public function head()
     {
-        [$head] = $this->headTail();
+        list ($head) = $this->headTail();
 
         return $head;
     }
@@ -182,7 +182,7 @@ class ListtCons implements Listt, \IteratorAggregate
      */
     public function tail(): Listt
     {
-        [$head, $tail] = $this->headTail();
+        list (, $tail) = $this->headTail();
 
         return $tail;
     }
