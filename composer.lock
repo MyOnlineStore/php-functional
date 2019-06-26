@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "96e6d27ddd6db7cf070f1fc770603693",
+    "content-hash": "0b373ae92966f3aa319d9d82518ba0a0",
     "packages": [
         {
             "name": "functional-php/fantasy-land",
-            "version": "dev-backport-7.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MyOnlineStore/fantasy-land.git",
-                "reference": "5d02d373e84d28c557cdf30bc5ca2a8df134ff85"
+                "reference": "63d7cc5de964a7b669d6d7327de467b8a6cf7206"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MyOnlineStore/fantasy-land/zipball/5d02d373e84d28c557cdf30bc5ca2a8df134ff85",
-                "reference": "5d02d373e84d28c557cdf30bc5ca2a8df134ff85",
+                "url": "https://api.github.com/repos/MyOnlineStore/fantasy-land/zipball/63d7cc5de964a7b669d6d7327de467b8a6cf7206",
+                "reference": "63d7cc5de964a7b669d6d7327de467b8a6cf7206",
                 "shasum": ""
             },
             "require": {
@@ -59,9 +59,9 @@
             ],
             "description": "Specification for interoperability of common algebraic structures in PHP",
             "support": {
-                "source": "https://github.com/MyOnlineStore/fantasy-land/tree/backport-7.0"
+                "source": "https://github.com/MyOnlineStore/fantasy-land/tree/master"
             },
-            "time": "2019-06-25T09:33:11+00:00"
+            "time": "2019-06-26T06:28:13+00:00"
         }
     ],
     "packages-dev": [
