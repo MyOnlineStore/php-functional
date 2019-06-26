@@ -9,7 +9,7 @@
   ],
   "require": {
     "php": ">=7.0",
-    "functional-php/fantasy-land": "dev-backport-7.0"
+    "functional-php/fantasy-land": "dev-master"
   },
   "require-dev": {
     "phpunit/phpunit": "^6",
