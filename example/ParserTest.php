@@ -121,7 +121,7 @@ function charP(string $char, Listt $a = null)
 function maybeMapFirst(callable $fn)
 {
     return function ($result) use ($fn) {
-        [$matched, $rest] = $result;
+        list($matched, $rest) = $result;
 
         return just([
             $fn($matched),
@@ -142,13 +142,13 @@ function tokenizeP(callable $matcher, callable $transform = null, Listt $a = nul
 function allOfP(Listt $matchers, callable $transform = null, Listt $a = null)
 {
     return curryN(3, function (Listt $matchers, callable $transform, Listt $a) {
-        $result = reduce(function (?Maybe $b, callable $matcher) use ($a) {
+        $result = reduce(function (Maybe $b = null, callable $matcher) use ($a) {
             return $b instanceof Just
                 ? $b->bind(function ($result) use ($matcher) {
-                    [$matched, $rest] = $result;
+                    list($matched, $rest) = $result;
 
                     return $matcher($rest)->map(function ($result) use ($matched) {
-                        [$matched2, $rest2] = $result;
+                        list($matched2, $rest2) = $result;
 
                         return [concatM($matched, fromValue($matched2)), $rest2];
                     });
@@ -174,7 +174,7 @@ function manyP(Listt $matchers, callable $transform = null, Listt $a = null)
         do {
             $r = $m($a);
             if ($r instanceof Just) {
-                [$mached, $rest] = $r->extract();
+                list($mached, $rest) = $r->extract();
                 // TODO this is also kind-a not optimal
                 $res = append($res, fromValue($mached));
                 $a = $rest;
@@ -195,7 +195,7 @@ function manyP(Listt $matchers, callable $transform = null, Listt $a = null)
 function oneOfP(Listt $matchers, Listt $a = null)
 {
     return curryN(2, function (Listt $matchers, Listt $a) {
-        $result = reduce(function (?Maybe $b, callable $matcher) use ($a) {
+        $result = reduce(function (Maybe $b = null, callable $matcher) use ($a) {
             return $b instanceof Just
                 ? $b
                 : $matcher($a);
@@ -233,12 +233,12 @@ function endByP(callable $matcher, callable $matcherEnd = null, callable $transf
 
         $result = $matcher($before);
         if ($result instanceof Just) {
-            [$m, $rest] = $result->extract();
+            list ($m, $rest) = $result->extract();
             if (length($rest)) {
                 return nothing();
             }
 
-            [$e, $restEnd] = $resultEnd->extract();
+            list ($e, $restEnd) = $resultEnd->extract();
 
             return just([
                 $transform(fromIterable([$m, $e])),
@@ -405,7 +405,7 @@ class ParserTest extends \PHPUnit\Framework\TestCase
         $binary = denest(allOfP(fromIterable([
             &$expression, $operator, &$expression
         ]), function (Listt $attr) {
-            [$a, $op, $b] = $attr->extract();
+            list ($a, $op, $b) = $attr->extract();
 
             return $op($a, $b);
         }));
@@ -580,7 +580,7 @@ class ParserTest extends \PHPUnit\Framework\TestCase
         });
 
         $declarationDerived = endByP($declaration, $dataDeriving, function (Listt $a) {
-            [$declaration, $derived] = $a->extract();
+            list ($declaration, $derived) = $a->extract();
 
             return ['declaration-derived', [$declaration, $derived]];
         });
@@ -760,7 +760,7 @@ class ParserTest extends \PHPUnit\Framework\TestCase
         });
 
         $declarationDerived = endByP($declaration, $dataDeriving, function (Listt $a) {
-            [$declaration, $derived] = $a->extract();
+            list ($declaration, $derived) = $a->extract();
 
             return declaree($declaration, fromValue($derived));
         });

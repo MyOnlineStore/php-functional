@@ -137,7 +137,7 @@ function span(callable $predicate, Listt $xs = null)
                 return [fromNil(), $xs];
             }
 
-            [$z, $zs] = span($predicate, $ys);
+            list ($z, $zs) = span($predicate, $ys);
 
             return [
                 prepend($y, $z),

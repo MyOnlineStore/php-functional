@@ -1,9 +1,15 @@
 {
   "name": "widmogrod/php-functional",
   "description": "Functors, Applicative and Monads are fascinating concept. Purpose of this library is to explore them in OOP PHP world.",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/MyOnlineStore/fantasy-land"
+    }
+  ],
   "require": {
-    "php": ">=7.1",
-    "functional-php/fantasy-land": "^1"
+    "php": ">=7.0",
+    "functional-php/fantasy-land": "dev-backport-7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^6",
@@ -53,5 +59,10 @@
       "src/Monad/Control/Doo/interpretation.php",
       "src/Useful/match.php"
     ]
+  },
+  "config": {
+    "platform": {
+      "php": "7.0.33"
+    }
   }
 }

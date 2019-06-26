@@ -37,7 +37,7 @@ class State implements FantasyLand\Monad
     public function bind(callable $function)
     {
         return self::of(function ($state) use ($function) {
-            [$value, $newState] = $this->runState($state);
+            list ($value, $newState) = $this->runState($state);
             $m = $function($value);
 
             return $m instanceof State
@@ -52,7 +52,7 @@ class State implements FantasyLand\Monad
     public function map(callable $function): FantasyLand\Functor
     {
         return self::of(function ($state) use ($function) {
-            [$value, $newState] = $this->runState($state);
+            list ($value, $newState) = $this->runState($state);
 
             return [$function($value), $newState];
         });

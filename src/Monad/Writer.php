@@ -34,7 +34,7 @@ class Writer implements FantasyLand\Monad
 
     public function bind(callable $function)
     {
-        [$value, $side] = $function($this->value)->runWriter();
+        list ($value, $side) = $function($this->value)->runWriter();
 
         return new static($value, $this->side->concat($side));
     }
